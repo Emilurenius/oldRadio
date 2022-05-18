@@ -10,7 +10,6 @@ def main():
     print('Playing media')
     media.play()
     time.sleep(5)
-    media.
     while media.is_playing():
         time.sleep(1)
     

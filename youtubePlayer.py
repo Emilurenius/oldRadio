@@ -1,10 +1,10 @@
-import vlc, pafy, time
+import vlc, pafy, time, youtubeSearcher
 
 def youtubeURL(watchID):
     return f'http://www.youtube.com/watch?v={watchID}'
 
 def main():
-    video = pafy.new(input('Paste full link of video: >> '))
+    video = pafy.new(youtubeURL(youtubeSearcher.search(input('Write name of video: >> '))))
     best = video.getbestaudio()
     media = vlc.MediaPlayer(best.url)
     print('Playing media')

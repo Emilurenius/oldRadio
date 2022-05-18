@@ -5,11 +5,12 @@ def youtubeURL(watchID):
 
 def main():
     video = pafy.new(youtubeURL('dQw4w9WgXcQ'))
-    best = video.getbest()
+    best = video.getbestaudio()
     media = vlc.MediaPlayer(best.url)
     print('Playing media')
     media.play()
     time.sleep(5)
+    media.
     while media.is_playing():
         time.sleep(1)
     

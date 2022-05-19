@@ -14,6 +14,20 @@ let clients = {
     slaves: {}
 }
 
+function loadJSON(filename) {
+    const rawdata = fs.readFileSync(path.join(__dirname, filename))
+    const data = JSON.parse(rawdata)
+    return data
+}
+
+function saveJSON(json, filename) {
+    const stringified = JSON.stringify(json, null, 4)
+    fs.writeFile(path.join(__dirname, filename), stringified, (err) => {
+        if (err) throw err
+        console.log("Data written to file")
+    })
+}
+
 function refreshAccessToken(client) {
 
     console.log(client)

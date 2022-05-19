@@ -91,18 +91,20 @@ app.get('/movePlayBack', (req, res) => {
     .then ((data) => {
         console.log(data.body.devices)
         for (x in data.body.devices) {
-            if (x.name == 'oldRadio') {
-                oldRadioID = x.id
-            }
+            // if (x.name == 'oldRadio') {
+            //     oldRadioID = x.id
+            // }
+            console.log(x)
         }
-        if (oldRadioID) {
-            console.log('oldRadio found')
-            res.send('Radio found')
-        }
-        else {
-            console.log('Radio not available')
-            res.send('Could not find radio')
-        }
+        res.send('placeHolder')
+        // if (oldRadioID) {
+        //     console.log('oldRadio found')
+        //     res.send('Radio found')
+        // }
+        // else {
+        //     console.log('Radio not available')
+        //     res.send('Could not find radio')
+        // }
     }, (err) => {
         console.error(err)
     })

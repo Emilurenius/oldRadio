@@ -90,11 +90,8 @@ app.get('/movePlayBack', (req, res) => {
     client.getMyDevices()
     .then ((data) => {
         console.log(data.body.devices)
-        for (x in data.body.devices) {
-            // if (x.name == 'oldRadio') {
-            //     oldRadioID = x.id
-            // }
-            console.log(x.name)
+        for (k in data.body.devices) {
+            console.log(data.body.devices[k])
         }
         res.send('placeHolder')
         // if (oldRadioID) {

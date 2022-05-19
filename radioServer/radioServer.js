@@ -94,7 +94,7 @@ app.get('/movePlayBack', (req, res) => {
             // if (x.name == 'oldRadio') {
             //     oldRadioID = x.id
             // }
-            console.log(x)
+            console.log(x.name)
         }
         res.send('placeHolder')
         // if (oldRadioID) {

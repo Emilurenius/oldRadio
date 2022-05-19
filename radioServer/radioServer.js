@@ -89,19 +89,20 @@ app.get('/movePlayBack', (req, res) => {
     client.setAccessToken(accessData.access_token)
     client.getMyDevices()
     .then ((data) => {
-        console.log(data.body.devices)
         for (k in data.body.devices) {
             console.log(data.body.devices[k])
+            if (data.body.devices[k].name == 'oldRadio') {
+                oldRadioID = data.body.devices[k].id
+            }
         }
-        res.send('placeHolder')
-        // if (oldRadioID) {
-        //     console.log('oldRadio found')
-        //     res.send('Radio found')
-        // }
-        // else {
-        //     console.log('Radio not available')
-        //     res.send('Could not find radio')
-        // }
+        if (oldRadioID) {
+            console.log('oldRadio found')
+            res.send('Radio found')
+        }
+        else {
+            console.log('Radio not available')
+            res.send('Could not find radio')
+        }
     }, (err) => {
         console.error(err)
     })

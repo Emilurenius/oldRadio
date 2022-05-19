@@ -85,10 +85,24 @@ app.get('/spotifyConnected', (req, res) => {
 
 app.get('/movePlayBack', (req, res) => {
     const client = createClient(clientData)
+    let oldRadioID = null
     client.setAccessToken(accessData.access_token)
     client.getMyDevices()
     .then ((data) => {
-        console.log(data.body.devices[0])
+        console.log(data.body.devices)
+        for (x in data.body.devices) {
+            if (x.name == 'oldRadio') {
+                oldRadioID = x.id
+            }
+        }
+        if (oldRadioID) {
+            console.log('oldRadio found')
+            res.send('Radio found')
+        }
+        else {
+            console.log('Radio not available')
+            res.send('Could not find radio')
+        }
     }, (err) => {
         console.error(err)
     })

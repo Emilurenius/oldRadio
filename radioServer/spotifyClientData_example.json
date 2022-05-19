@@ -1,0 +1,5 @@
+{
+    "clientID": "Your Client ID here",
+    "clientSecret": "Your client secret here",
+    "loginRedirect": "redirect Uri goes here"
+}

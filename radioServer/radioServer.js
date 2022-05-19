@@ -97,7 +97,7 @@ app.get('/movePlayBack', (req, res) => {
         }
         if (oldRadioID) {
             console.log('oldRadio found')
-            client.transferMyPlayback(oldRadioID)
+            client.transferMyPlayback([oldRadioID])
             res.send('Radio found')
         }
         else {

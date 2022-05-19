@@ -10,9 +10,9 @@ const SpotifyWebAPI = require('spotify-web-api-node');
 
 const scopes = ['user-read-playback-state', 'user-modify-playback-state']
 const clientData = loadJSON("/spotifyClientData.json")
-let clients = {
-    sessions: {},
-    slaves: {}
+let accessData = {
+    'access_token': '',
+    'refresh_token': ''
 }
 
 function loadJSON(filename) {
@@ -74,8 +74,8 @@ app.get('/spotifyConnected', (req, res) => {
     spotifyAPI.authorizationCodeGrant(auth)
     .then((data) => {
         console.log(data)
-        res.cookie('access_token', data.body.access_token, { maxAge: 86400000, httpOnly: false })
-        res.cookie('refresh_token', data.body.refresh_token, { maxAge: 86400000, httpOnly: false })
+        accessData.access_token = data.body.access_token
+        accessData.refresh_token = data.body.refresh_token
         res.redirect('/movePlayBack')
     }, (err) => {
         console.log('Something went wrong while retrieving acces token')
@@ -85,7 +85,7 @@ app.get('/spotifyConnected', (req, res) => {
 
 app.get('/movePlayBack', (req, res) => {
     const client = createClient(clientData)
-    client.setAccessToken(req.cookies.access_token)
+    client.setAccessToken(accessData.access_token)
     client.getMyDevices()
     .then ((data) => {
         console.log(data.body)

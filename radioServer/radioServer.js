@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
+const cookieParser = require("cookie-parser")
 const SpotifyWebAPI = require('spotify-web-api-node');
 //const fileUpload = require("express-fileupload");
 

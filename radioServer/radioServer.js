@@ -88,8 +88,7 @@ app.get('/movePlayBack', (req, res) => {
     client.setAccessToken(accessData.access_token)
     client.getMyDevices()
     .then ((data) => {
-        console.log(data.body)
-        res.send(data.body)
+        console.log(data.body.devices[0])
     }, (err) => {
         console.error(err)
     })

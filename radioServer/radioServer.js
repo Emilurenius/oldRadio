@@ -52,6 +52,8 @@ function createClient(clientData) {
     })
 }
 
+const spotifyAPI = createClient(clientData)
+
 // Reading input from terminal start
 const port = parseInt(process.argv[2]) || 3000
 console.log(`${port} registered as server port`)

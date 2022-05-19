@@ -75,10 +75,22 @@ app.get('/spotifyConnected', (req, res) => {
         console.log(data)
         res.cookie('access_token', data.body.access_token, { maxAge: 86400000, httpOnly: false })
         res.cookie('refresh_token', data.body.refresh_token, { maxAge: 86400000, httpOnly: false })
-        res.send('Music should now start playing from the radio')
+        res.redirect('/movePlayBack')
     }, (err) => {
         console.log('Something went wrong while retrieving acces token')
         res.send('Something went wrong while retrieving acces token')
+    })
+})
+
+app.get('/movePlayBack', (req, res) => {
+    const client = createClient(clientData)
+    client.setAccessToken(req.cookies.access_token)
+    client.getMyDevices()
+    .then ((data) => {
+        console.log(data.body)
+        res.send(data.body)
+    }, (err) => {
+        console.error(err)
     })
 })
 
